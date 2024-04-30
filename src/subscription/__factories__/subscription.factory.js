@@ -18,7 +18,7 @@ Factory.define('subscription')
     program_type: 'Professional Certificate',
     price: 55.00,
     total_price: 0,
-    currency: 'USD',
+    currency: 'GBP',
     paymentMethod: 'stripe',
     trial_end: '2023-06-29T13:05:04Z',
     error_code: null,

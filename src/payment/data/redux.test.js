@@ -42,15 +42,15 @@ describe('redux tests', () => {
         });
       });
 
-      it('should work for USD', () => {
+      it('should work for GBP', () => {
         Cookies.result = {
-          code: 'USD',
+          code: 'GBP',
           rate: 1,
         };
 
         const result = localizedCurrencySelector();
         expect(result).toEqual({
-          currencyCode: 'USD',
+          currencyCode: 'GBP',
           conversionRate: 1,
           showAsLocalizedCurrency: false,
         });

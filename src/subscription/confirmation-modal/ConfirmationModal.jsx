@@ -71,7 +71,7 @@ export const ConfirmationModal = () => {
             currency,
             price: intl.formatNumber(price, {
               style: 'currency',
-              currency: currency || 'USD',
+              currency: currency || 'GBP',
               ...getPropsToRemoveFractionZeroDigits({ price, shouldRemoveFractionZeroDigits: true }),
             }),
             ordersAndSubscriptionLink,

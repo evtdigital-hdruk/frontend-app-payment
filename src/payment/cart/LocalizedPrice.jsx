@@ -7,7 +7,7 @@ import { localizedCurrencySelector, getPropsToRemoveFractionZeroDigits } from '.
 
 /**
  * Displays a positive or negative price, according to the currency and the conversion rate set
- * in the edx-price-l10n cookie, or USD if no cookie exists.  If the currency is not USD, the
+ * in the edx-price-l10n cookie, or GBP if no cookie exists.  If the currency is not GBP, the
  * price is displayed with an * alert symbol next to it.
  *
  * Since localized prices are an estimate anyway, they are always round numbers (0 decimal points).
@@ -60,7 +60,7 @@ LocalizedPrice.propTypes = {
 LocalizedPrice.defaultProps = {
   amount: undefined,
   conversionRate: 1,
-  currencyCode: 'USD',
+  currencyCode: 'GBP',
   showAsLocalizedCurrency: false,
   shouldRemoveFractionZeroDigits: false,
 };

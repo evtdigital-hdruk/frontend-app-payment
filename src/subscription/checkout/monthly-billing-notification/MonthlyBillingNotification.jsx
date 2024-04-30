@@ -44,7 +44,7 @@ const MonthlyBillingNotification = () => {
           trialEnd: isTrialEligible ? trialDateHelpingText : resubscribeDateHelpingText,
           price: intl.formatNumber(price, {
             style: 'currency',
-            currency: currency || 'USD',
+            currency: currency || 'GBP',
             ...getPropsToRemoveFractionZeroDigits({ price, shouldRemoveFractionZeroDigits: true }),
           }),
         })

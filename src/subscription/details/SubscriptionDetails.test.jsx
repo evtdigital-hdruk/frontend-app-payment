@@ -56,7 +56,7 @@ describe('<SubscriptionDetails />', () => {
     expect(screen.getAllByText('Verified Certificate')).toHaveLength(2);
   });
 
-  it('should render the USD currency if no currency cookie found', () => {
+  it('should render the GBP currency if no currency cookie found', () => {
     Cookies.result[process.env.CURRENCY_COOKIE_NAME] = undefined;
     render(<SubscriptionDetails />);
     act(() => {
@@ -71,7 +71,7 @@ describe('<SubscriptionDetails />', () => {
     expect(screen.queryByText(/MX$1,050 */)).toBeNull();
     // Total amount should be 0
     expect(screen.queryByText(/$0.00/)).toBeDefined();
-    // should render in USD amount
-    expect(screen.queryAllByText('$55/month USD after 7-day free trial')).toHaveLength(1);
+    // should render in GBP amount
+    expect(screen.queryAllByText('$55/month GBP after 7-day free trial')).toHaveLength(1);
   });
 });

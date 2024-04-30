@@ -14,7 +14,7 @@ This HOWTO explains what the localized currency cookie is and how it is connecte
 What is localized currency?
 ***************************
 
-This is when we show users prices on the payment page in what we think is the correct currency for where they are. These prices can be rounded, since the final checkout charge will still be in U.S. dollars (USD).
+This is when we show users prices on the payment page in what we think is the correct currency for where they are. These prices can be rounded, since the final checkout charge will still be in U.S. dollars (GBP).
 
 *************
 Cookie format
@@ -34,7 +34,7 @@ I found that Chrome developer tools didn't want to set a cookie with this value,
 LocalizedPrice component
 ************************
 
-The LocalizedPrice component is tied to the value of the localized currency cookie, if one exists, through the React store. If the currency is not USD, this component uses the exchange rate in the cookie to convert the price and to display an asterisk next to it. This asterisk is then matched with a disclaimer message clarifying that the charge will still be in USD.
+The LocalizedPrice component is tied to the value of the localized currency cookie, if one exists, through the React store. If the currency is not GBP, this component uses the exchange rate in the cookie to convert the price and to display an asterisk next to it. This asterisk is then matched with a disclaimer message clarifying that the charge will still be in GBP.
 
 Unlike most prices, localized currencies are displayed with no decimal places, since they're an estimate anyway.
 
@@ -42,7 +42,7 @@ Unlike most prices, localized currencies are displayed with no decimal places, s
 Future work
 ***********
 
-Currently, USD is hardcoded as the currency in which we accept payments.  At some point this should become configurable.
+Currently, GBP is hardcoded as the currency in which we accept payments.  At some point this should become configurable.
 
 ***************
 Troubleshooting

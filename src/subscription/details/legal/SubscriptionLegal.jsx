@@ -29,7 +29,7 @@ const SubscriptionLegal = ({
       }),
       programTitle,
       supportLink,
-      currency: currency || 'USD',
+      currency: currency || 'GBP',
     })}
     </p>
   );
@@ -42,7 +42,7 @@ SubscriptionLegal.propTypes = {
 };
 
 SubscriptionLegal.defaultProps = {
-  currency: 'USD',
+  currency: 'GBP',
 };
 
 export default SubscriptionLegal;

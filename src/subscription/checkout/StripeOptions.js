@@ -7,7 +7,7 @@ export const getStripeOptions = ({ currency, price }) => ({
   // Stripe element config
   mode: 'subscription',
   /**
-   * Stripe expects the amount in cents for USD currency, and minimum amount it expects is 0.50 cents
+   * Stripe expects the amount in cents for GBP currency, and minimum amount it expects is 0.50 cents
    * https://stripe.com/docs/currencies#zero-decimal
    * */
   amount: (price * 100),
