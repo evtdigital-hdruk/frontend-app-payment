@@ -100,7 +100,7 @@ describe('<Cart />', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders a cart in non USD currency', () => {
+  it('renders a cart in non GBP currency', () => {
     Cookies.result = {
       code: 'MXN',
       rate: 19.092733,

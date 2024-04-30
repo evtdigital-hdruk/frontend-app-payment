@@ -127,8 +127,8 @@
   "subscription.screen.reader.details.loading": "Chargements, veuillez patienter...",
   "subscription.screen.reader.details.loaded": "Les détails de l'achat sont chargés.",
   "subscription.summary.table.label.price": "Prix",
-  "subscription.summary.table.label.trialing.price": "/mois USD après 7 jours d'essai gratuit",
-  "subscription.summary.table.label.resubscribe.price": "/mois USD",
+  "subscription.summary.table.label.trialing.price": "/mois GBP après 7 jours d'essai gratuit",
+  "subscription.summary.table.label.resubscribe.price": "/mois GBP",
   "subscription.summary.table.label.total.to.pay": "La somme d'aujourd'hui",
   "subscription.heading.page": "Paiement de l'abonnement",
   "subscription.loading.details": "Chargement de l'abonnement..."

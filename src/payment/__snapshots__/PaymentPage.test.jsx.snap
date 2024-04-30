@@ -4524,7 +4524,7 @@ exports[`<PaymentPage /> Renders correctly in various states should render the b
               Array [
                 "* This total contains an approximate conversion. You will be charged ",
                 "$445.19",
-                " USD.",
+                " GBP.",
               ]
             </div>
           </div>

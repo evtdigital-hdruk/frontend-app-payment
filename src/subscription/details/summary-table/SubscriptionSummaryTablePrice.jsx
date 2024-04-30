@@ -27,14 +27,14 @@ export const SubscriptionSummaryTablePrice = ({ price, isTrialEligible, currency
         ? (
           <FormattedMessage
             id="subscription.summary.table.label.trialing.price"
-            defaultMessage="/month USD after 7-day free trial"
+            defaultMessage="/month GBP after 7-day free trial"
             description="Label for subscription on order summary table"
           />
         )
         : (
           <FormattedMessage
             id="subscription.summary.table.label.resubscribe.price"
-            defaultMessage="/month USD"
+            defaultMessage="/month GBP"
             description="Label for subscription on order summary table"
           />
         )}
@@ -50,7 +50,7 @@ SubscriptionSummaryTablePrice.propTypes = {
 SubscriptionSummaryTablePrice.defaultProps = {
   price: undefined,
   isTrialEligible: false,
-  currency: 'USD',
+  currency: 'GBP',
 };
 
 export default SubscriptionSummaryTablePrice;

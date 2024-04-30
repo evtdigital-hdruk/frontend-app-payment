@@ -127,8 +127,8 @@
   "subscription.screen.reader.details.loading": "Loading, please wait...",
   "subscription.screen.reader.details.loaded": "Shopping details are loaded.",
   "subscription.summary.table.label.price": "Price",
-  "subscription.summary.table.label.trialing.price": "/month USD after 7-day free trial",
-  "subscription.summary.table.label.resubscribe.price": "/month USD",
+  "subscription.summary.table.label.trialing.price": "/month GBP after 7-day free trial",
+  "subscription.summary.table.label.resubscribe.price": "/month GBP",
   "subscription.summary.table.label.total.to.pay": "Today's total",
   "subscription.heading.page": "Subscription Payment",
   "subscription.loading.details": "Loading subscription..."

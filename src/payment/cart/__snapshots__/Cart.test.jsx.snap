@@ -498,7 +498,7 @@ exports[`<Cart /> renders a bulk enrollment cart 1`] = `
 </section>
 `;
 
-exports[`<Cart /> renders a cart in non USD currency 1`] = `
+exports[`<Cart /> renders a cart in non GBP currency 1`] = `
 <section
   aria-label="Shopping Cart Details"
   aria-live="polite"
@@ -607,7 +607,7 @@ exports[`<Cart /> renders a cart in non USD currency 1`] = `
         Array [
           "* This total contains an approximate conversion. You will be charged ",
           "$66.22",
-          " USD.",
+          " GBP.",
         ]
       </div>
     </div>

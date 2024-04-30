@@ -33,7 +33,7 @@ SubscriptionTotalTable.propTypes = {
 };
 SubscriptionTotalTable.defaultProps = {
   total: 0,
-  currency: 'USD',
+  currency: 'GBP',
 };
 
 export default SubscriptionTotalTable;
