@@ -217,11 +217,12 @@ class Checkout extends React.Component {
     }
 
     const basketClassName = 'basket-section';
+    const hideCybersourceCheckout = true;
 
     // TODO: Right now when fetching capture context, CyberSource's captureKey is saved as clientSecretId
     // so we cannot rely on !options.clientSecret to distinguish btw payment processors
     const shouldDisplayStripePaymentForm = !loading && enableStripePaymentProcessor && options.clientSecret;
-    const shouldDisplayCyberSourcePaymentForm = !loading && !enableStripePaymentProcessor;
+    const shouldDisplayCyberSourcePaymentForm = !loading && !enableStripePaymentProcessor && !hideCybersourceCheckout;
 
     // Doing this within the Checkout component so locale is configured and available
     let stripePromise;
@@ -239,22 +240,24 @@ class Checkout extends React.Component {
           <h5 aria-level="2">
             <FormattedMessage
               id="payment.select.payment.method.heading"
-              defaultMessage="Select Payment Method"
+              defaultMessage="Checkout with PayPal"
               description="The heading for the payment type selection section"
             />
           </h5>
 
           <p className="d-flex flex-wrap">
-            <button type="button" className="payment-method-button active">
-              <img
-                src={AcceptedCardLogos}
-                alt={intl.formatMessage(messages['payment.page.method.type.credit'])}
-              />
-            </button>
-
+            {shouldDisplayCyberSourcePaymentForm
+              && (
+                <button type="button" className="payment-method-button active">
+                  <img
+                    src={AcceptedCardLogos}
+                    alt={intl.formatMessage(messages['payment.page.method.type.credit'])}
+                  />
+                </button>
+              )}
             <PayPalButton
               onClick={this.handleSubmitPayPal}
-              className={classNames('payment-method-button', { 'skeleton-pulse': loading })}
+              className={classNames('payment-method-button active', { 'skeleton-pulse': loading })}
               disabled={submissionDisabled}
               isProcessing={payPalIsSubmitting}
               data-testid="PayPalButton"
@@ -283,16 +286,16 @@ class Checkout extends React.Component {
         ) : (loading && (this.renderBillingFormSkeleton()))}
 
         {shouldDisplayCyberSourcePaymentForm && (
-        <PaymentForm
-          onSubmitPayment={this.handleSubmitCybersource}
-          onSubmitButtonClick={this.handleSubmitCybersourceButtonClick}
-          disabled={submitting}
-          loading={loading}
-          loaded={loaded}
-          isProcessing={cybersourceIsSubmitting}
-          isBulkOrder={isBulkOrder}
-          isQuantityUpdating={isQuantityUpdating}
-        />
+          <PaymentForm
+            onSubmitPayment={this.handleSubmitCybersource}
+            onSubmitButtonClick={this.handleSubmitCybersourceButtonClick}
+            disabled={submitting}
+            loading={loading}
+            loaded={loaded}
+            isProcessing={cybersourceIsSubmitting}
+            isBulkOrder={isBulkOrder}
+            isQuantityUpdating={isQuantityUpdating}
+          />
         )}
       </>
     );
