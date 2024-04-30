@@ -19,7 +19,7 @@ Factory.define('basket')
     summary_discounts: 0.0,
     show_coupon_form: false,
     is_free_basket: false,
-    currency: 'USD',
+    currency: 'GBP',
     offers: [],
     coupons: [],
   })
