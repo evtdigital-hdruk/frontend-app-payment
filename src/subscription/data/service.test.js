@@ -38,7 +38,7 @@ describe('getDetails', () => {
     program_title: 'Blockchain Fundamentals',
     is_eligible_trial: true,
     payment_processor: 'stripe',
-    currency: 'usd',
+    currency: 'GBP',
   };
   test('should return transformed data on success', async () => {
     axios.get.mockResolvedValue({
@@ -53,7 +53,7 @@ describe('getDetails', () => {
       programTitle: 'Blockchain Fundamentals',
       isEligibleTrial: true,
       paymentProcessor: 'stripe',
-      currency: 'usd',
+      currency: 'GBP',
     });
     expect(axios.get).toHaveBeenCalledWith(`${getConfig().SUBSCRIPTIONS_BASE_URL}/api/v1/stripe-checkout/`);
   });

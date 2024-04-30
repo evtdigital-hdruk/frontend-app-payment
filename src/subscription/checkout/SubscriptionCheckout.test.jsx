@@ -16,7 +16,7 @@ jest.mock('./StripeOptions', () => ({
   getStripeOptions: jest.fn().mockReturnValue({
     mode: 'subscription',
     amount: 55,
-    currency: 'usd',
+    currency: 'GBP',
     paymentMethodCreation: 'manual',
   }),
 }));
@@ -56,7 +56,7 @@ describe('<SubscriptionCheckout />', () => {
     render(<SubscriptionCheckout />);
     expect(screen.queryByText('Last Name (required)')).not.toBeInTheDocument(); // it doesn't exist
     expect(
-      screen.queryByText('You’ll be charged $55.00 USD on April 21, 2025 then every 31 days until you cancel your subscription.'),
+      screen.queryByText('You’ll be charged $55.00 GBP on April 21, 2025 then every 31 days until you cancel your subscription.'),
     ).toBeNull();
   });
 
