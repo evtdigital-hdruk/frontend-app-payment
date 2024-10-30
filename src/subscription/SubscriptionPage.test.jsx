@@ -82,7 +82,7 @@ describe('<SubscriptionPage />', () => {
     expect(screen.queryByText(/MX$1,050 */)).toBeNull();
   });
 
-  it('should render the USD currency if no currency cookie found', () => {
+  it('should render the GBP currency if no currency cookie found', () => {
     Cookies.result[process.env.CURRENCY_COOKIE_NAME] = undefined;
     render(<SubscriptionPage />);
     act(() => {
@@ -95,7 +95,7 @@ describe('<SubscriptionPage />', () => {
     });
 
     expect(screen.queryByText(/MX$1,050 */)).toBeNull();
-    expect(screen.getByText('$55/month USD after 7-day free trial')).toBeDefined();
+    expect(screen.getByText('$55/month GBP after 7-day free trial')).toBeDefined();
   });
 
   it('should render a redirect spinner', () => {

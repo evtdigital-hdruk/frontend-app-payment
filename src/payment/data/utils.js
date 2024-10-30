@@ -199,7 +199,7 @@ export const localizedCurrencySelector = () => {
     conversionRate = cookie.rate;
   }
 
-  const showAsLocalizedCurrency = typeof currencyCode === 'string' ? currencyCode !== 'USD' : false;
+  const showAsLocalizedCurrency = typeof currencyCode === 'string' ? currencyCode !== 'GBP' : false;
 
   return {
     currencyCode,
