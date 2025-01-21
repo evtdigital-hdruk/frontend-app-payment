@@ -260,6 +260,7 @@ class Checkout extends React.Component {
               className={classNames('payment-method-button active', { 'skeleton-pulse': loading })}
               disabled={submissionDisabled}
               isProcessing={payPalIsSubmitting}
+              data-testid="PayPalButton"
             />
 
             {/* Apple Pay temporarily disabled per REV-927  - https://github.com/openedx/frontend-app-payment/pull/256 */}

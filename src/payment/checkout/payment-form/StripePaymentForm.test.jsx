@@ -2,19 +2,18 @@
 import React from 'react';
 import * as reactRedux from 'react-redux';
 import { createStore } from 'redux';
-import { mount } from 'enzyme';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { IntlProvider, configure as configureI18n } from '@edx/frontend-platform/i18n';
 import { Factory } from 'rosie';
 import configureMockStore from 'redux-mock-store';
 
-import { Elements, PaymentElement } from '@stripe/react-stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 import { AppContext } from '@edx/frontend-platform/react';
 import StripePaymentForm from './StripePaymentForm';
 import * as formValidators from './utils/form-validators';
 import createRootReducer from '../../../data/reducers';
 import '../../__factories__/userAccount.factory';
 import * as mocks from '../stripeMocks';
-import PlaceOrderButton from './PlaceOrderButton';
 import { basketSelector } from '../../data/selectors';
 
 jest.mock('@edx/frontend-platform/analytics', () => ({
@@ -59,7 +58,6 @@ describe('<StripePaymentForm />', () => {
   let store;
   let mockStripe;
   let mockElements;
-  let submitButton;
   let state;
   let mockElement;
   let paymentElement;
@@ -89,7 +87,7 @@ describe('<StripePaymentForm />', () => {
       form: {},
     };
 
-    const wrapper = mount((
+    const wrapper = render((
       <IntlProvider locale="en">
         <AppContext.Provider value={{ authenticatedUser }}>
           <reactRedux.Provider store={mockStore(state)}>
@@ -105,8 +103,7 @@ describe('<StripePaymentForm />', () => {
         </AppContext.Provider>
       </IntlProvider>
     ));
-    paymentElement = wrapper.find(PaymentElement);
-    submitButton = wrapper.find(PlaceOrderButton);
+    paymentElement = wrapper.container.querySelectorAll('#payment-element');
   });
 
   afterEach(() => {
@@ -128,8 +125,7 @@ describe('<StripePaymentForm />', () => {
           lastName: '',
           address: '',
           city: '',
-          country: 'GB',
-          postalCode: '',
+          country: 'AQ', // Antarctica does not have states, postal code not required
           optionalField: '',
         },
         {
@@ -137,7 +133,7 @@ describe('<StripePaymentForm />', () => {
           lastName: '',
           address: '',
           city: '',
-          country: 'US',
+          country: 'GB', // United Kingdom has states, state becomes required, postal code is required
           postalCode: '',
           state: '',
           optionalField: '',
@@ -147,7 +143,27 @@ describe('<StripePaymentForm />', () => {
           lastName: '',
           address: '',
           city: '',
-          country: 'IN',
+          country: 'CA', // Canada state and postal code are required
+          postalCode: '',
+          state: '',
+          optionalField: '',
+        },
+        {
+          firstName: '',
+          lastName: '',
+          address: '',
+          city: '',
+          country: 'US', // United States state and postal code are required
+          postalCode: '',
+          state: '',
+          optionalField: '',
+        },
+        {
+          firstName: '',
+          lastName: '',
+          address: '',
+          city: '',
+          country: 'IN', // India state is required
           state: '',
           optionalField: '',
         },
@@ -162,7 +178,7 @@ describe('<StripePaymentForm />', () => {
 
     it('returns organization fields for a bulk order', () => {
       const isBulkOrder = true;
-      mount((
+      render((
         <IntlProvider locale="en">
           <AppContext.Provider value={{ authenticatedUser }}>
             <reactRedux.Provider store={store}>
@@ -221,7 +237,7 @@ describe('<StripePaymentForm />', () => {
         },
       };
       const submitStripePayment = jest.fn();
-      mount((
+      render((
         <IntlProvider locale="en">
           <AppContext.Provider value={{ authenticatedUser }}>
             <reactRedux.Provider store={mockStore(state)}>
@@ -233,6 +249,7 @@ describe('<StripePaymentForm />', () => {
                   shouldFocusFirstError
                   firstErrorId={null}
                   paymentDataSelector={basketSelector}
+                  isProcessing
                 />
               </Elements>
             </reactRedux.Provider>
@@ -256,10 +273,10 @@ describe('<StripePaymentForm />', () => {
       testData.forEach((testCaseData) => {
         validateRequiredFieldsMock.mockReturnValueOnce(testCaseData[0]);
         if (testCaseData[1]) {
-          expect(() => submitButton.simulate('click'));
+          expect(() => fireEvent.click(screen.getByText('Place Order')));
           expect(submitStripePayment).not.toHaveBeenCalled();
         } else {
-          expect(() => submitButton.simulate('click')).not.toThrow();
+          expect(() => fireEvent.click(screen.getByText('Place Order'))).not.toThrow();
         }
       });
     });

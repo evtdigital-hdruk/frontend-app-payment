@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button, Form } from '@edx/paragon';
+import { Button, Form } from '@openedx/paragon';
 import { FormattedMessage } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 
@@ -52,7 +52,7 @@ class CouponForm extends Component {
               description="Label for the add coupon form"
             />
           </label>
-          <Form.Control name={id} id={id} type="text" defaultValue={code} />
+          <Form.Control name={id} id={id} type="text" defaultValue={code} data-testid={id} />
         </Form.Group>
         <Button
           disabled={isBasketProcessing}
