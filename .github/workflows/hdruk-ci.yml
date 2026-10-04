@@ -5,9 +5,6 @@
 # which needs a token this fork does not have. This file runs the same
 # lint, test and build steps on the HDR UK branches instead, so the
 # upstream workflow files can stay untouched and rebase cleanly.
-#
-# It reports only. It must not gate merges yet: do not make it a required
-# status check until the suite is known to be green.
 
 name: HDR UK CI
 
@@ -29,13 +26,13 @@ concurrency:
 jobs:
   tests:
     name: Lint, test and build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .nvmrc
           cache: npm
