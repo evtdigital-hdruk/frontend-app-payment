@@ -81,7 +81,7 @@ exports[`<Cart /> renders a basic, one product cart 1`] = `
           <span
             class="summary-price"
           >
-            $464.88
+            £464.88
           </span>
         </div>
         <div
@@ -95,7 +95,7 @@ exports[`<Cart /> renders a basic, one product cart 1`] = `
           <span
             class="text-right"
           >
-            $464.88
+            £464.88
           </span>
         </div>
       </div>
@@ -197,7 +197,7 @@ exports[`<Cart /> renders a basic, one product cart with coupon form 1`] = `
           <span
             class="summary-price"
           >
-            $445.19
+            £445.19
           </span>
         </div>
         <form
@@ -243,7 +243,7 @@ exports[`<Cart /> renders a basic, one product cart with coupon form 1`] = `
           <span
             class="text-right"
           >
-            $445.19
+            £445.19
           </span>
         </div>
       </div>
@@ -413,7 +413,7 @@ exports[`<Cart /> renders a bulk enrollment cart 1`] = `
             <tbody>
               <tr>
                 <td>
-                  $92.77
+                  £92.77
                 </td>
                 <td>
                   1
@@ -421,7 +421,7 @@ exports[`<Cart /> renders a bulk enrollment cart 1`] = `
                 <td
                   class="text-right"
                 >
-                  $92.77
+                  £92.77
                 </td>
               </tr>
             </tbody>
@@ -438,7 +438,7 @@ exports[`<Cart /> renders a bulk enrollment cart 1`] = `
           <span
             class="text-right"
           >
-            $92.77
+            £92.77
           </span>
         </div>
       </div>
@@ -482,7 +482,7 @@ exports[`<Cart /> renders a bulk enrollment cart 1`] = `
 </div>
 `;
 
-exports[`<Cart /> renders a cart in non USD currency 1`] = `
+exports[`<Cart /> renders a cart in non GBP currency 1`] = `
 <div>
   <section
     aria-label="Shopping Cart Details"
@@ -590,8 +590,8 @@ exports[`<Cart /> renders a cart in non USD currency 1`] = `
           class="text-muted font-italic"
         >
           * This total contains an approximate conversion. You will be charged 
-          $66.22
-           USD.
+          £66.22
+           GBP.
         </div>
       </div>
       <div
@@ -692,7 +692,7 @@ exports[`<Cart /> renders a cart with an offer 1`] = `
           <span
             class="summary-price"
           >
-            $158.87
+            £158.87
           </span>
         </div>
         <div
@@ -707,7 +707,7 @@ exports[`<Cart /> renders a cart with an offer 1`] = `
               Discounts applied
             </span>
             <span>
-              $0.00
+              £0.00
             </span>
           </p>
           <p
@@ -728,7 +728,7 @@ exports[`<Cart /> renders a cart with an offer 1`] = `
           <span
             class="text-right"
           >
-            $158.87
+            £158.87
           </span>
         </div>
       </div>
