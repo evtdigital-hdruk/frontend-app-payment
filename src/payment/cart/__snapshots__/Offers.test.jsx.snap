@@ -14,7 +14,7 @@ exports[`<Offers /> renders a dynamic discount offer 1`] = `
         Discounts applied
       </span>
       <span>
-        -$10.00
+        -£10.00
       </span>
     </p>
     <p
@@ -41,7 +41,7 @@ exports[`<Offers /> renders a percentage offer 1`] = `
         Discounts applied
       </span>
       <span>
-        -$10.00
+        -£10.00
       </span>
     </p>
     <p
@@ -68,13 +68,13 @@ exports[`<Offers /> renders an absolute value offer 1`] = `
         Discounts applied
       </span>
       <span>
-        -$10.00
+        -£10.00
       </span>
     </p>
     <p
       class="m-0 text-muted"
     >
-      $10.00
+      £10.00
        discount provided by Pied Piper.
     </p>
   </div>

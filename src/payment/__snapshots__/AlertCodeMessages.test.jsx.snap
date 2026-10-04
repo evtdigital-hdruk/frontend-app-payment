@@ -6,7 +6,7 @@ exports[`EnrollmentCodeQuantityUpdated should render with values 1`] = `
     We've updated your quantity.
   </h6>
   Your cart includes 2 enrollment codes at a total cost of 
-  $100.00
+  £100.00
   , that you will receive via email.
 </div>
 `;

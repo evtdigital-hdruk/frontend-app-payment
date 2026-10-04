@@ -86,7 +86,7 @@ exports[`CouponForm should render an absolute value coupon 1`] = `
       class="text-muted"
     >
       Coupon COUPONCODE applied for 
-      $10.00
+      £10.00
        off
     </span>
     <button

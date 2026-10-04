@@ -43,7 +43,7 @@
     "@openedx/paragon": "^22.1.1",
     "@stripe/react-stripe-js": "^1.10.0",
     "@stripe/stripe-js": "^1.36.0",
-    "axios": "^0.27.2",
+    "axios": "^0.31.1",
     "bootstrap": "^4.6.1",
     "classnames": "^2.3.1",
     "core-js": "^3.23.5",
@@ -86,5 +86,11 @@
     "redux-mock-store": "^1.5.4",
     "rosie": "^2.1.0",
     "webpack-merge": "^5.8.0"
+  },
+  "overrides": {
+    "axios": "$axios",
+    "universal-cookie": {
+      "cookie": "^0.7.2"
+    }
   }
 }

@@ -1,0 +1,59 @@
+# HDR UK CI
+#
+# The workflows inherited from upstream only run on pushes to `master`,
+# which does not exist in this fork, and they upload coverage to codecov,
+# which needs a token this fork does not have. This file runs the same
+# lint, test and build steps on the HDR UK branches instead, so the
+# upstream workflow files can stay untouched and rebase cleanly.
+
+name: HDR UK CI
+
+on:
+  push:
+    branches:
+      - 'hdr-uk/**'
+      - 'upgrade/**'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Lint, test and build
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check package-lock.json is unchanged
+        run: make validate-no-uncommitted-package-lock-changes
+
+      - name: Extract i18n messages
+        run: npm run i18n_extract
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      - name: Audit dependencies against the allowlist
+        run: npm run audit:allowlisted
