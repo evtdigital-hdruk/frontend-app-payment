@@ -7,15 +7,10 @@ import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { Factory } from 'rosie';
 
 import Checkout from './Checkout';
-import * as formValidators from './payment-form/utils/form-validators';
 import { submitPayment } from '../data/actions';
 import '../__factories__/basket.factory';
 import '../__factories__/userAccount.factory';
 import { transformResults } from '../data/utils';
-import { getPerformanceProperties } from '../performanceEventing';
-
-const validateRequiredFieldsMock = jest.spyOn(formValidators, 'validateRequiredFields');
-const validateCardDetailsMock = jest.spyOn(formValidators, 'validateCardDetails');
 
 jest.mock('@edx/frontend-platform/analytics', () => ({
   sendTrackEvent: jest.fn(),
@@ -105,37 +100,34 @@ describe('<Checkout />', () => {
 
     // Apple Pay temporarily disabled per REV-927 - https://github.com/openedx/frontend-app-payment/pull/256
 
-    it('submits and tracks the payment form', () => {
-      expect(sendTrackEvent).toHaveBeenCalledWith('edx.bi.ecommerce.payment_mfe.payment_form_rendered', {
-        ...getPerformanceProperties(),
-        paymentProcessor: 'Cybersource',
-      });
-      const formSubmitButton = wrapper.container.querySelector('form button[type="submit"]');
-      fireEvent.click(formSubmitButton);
+    it('renders PayPal as the active, visible checkout method', async () => {
+      const paypalButton = await screen.findByTestId('PayPalButton');
 
-      expect(sendTrackEvent).toHaveBeenCalledWith('edx.bi.ecommerce.basket.payment_selected', {
-        type: 'click',
-        category: 'checkout',
-        paymentMethod: 'Credit Card',
-        checkoutType: 'client_side',
-        flexMicroformEnabled: true,
-        stripeEnabled: false,
-      });
+      // PayPal is rendered and offered as an active payment-method button
+      expect(paypalButton).toBeInTheDocument();
+      expect(paypalButton).toHaveClass('payment-method-button', 'active');
+      // ...and it displays the PayPal logo (alt text)
+      expect(screen.getByAltText('PayPal')).toBeInTheDocument();
     });
 
-    it('fires an action when handling a cybersource submission', () => {
-      validateRequiredFieldsMock.mockReturnValueOnce({});
-      validateCardDetailsMock.mockReturnValueOnce({});
+    it('does not offer CyberSource as a checkout method', async () => {
+      // Ensure the component has finished its initial render/effects
+      await screen.findByTestId('PayPalButton');
 
-      const firstNameField = wrapper.container.querySelector('#firstName');
-      const lastNameField = wrapper.container.querySelector('#lastName');
+      // The CyberSource credit-card form is never mounted (hideCybersourceCheckout === true)
+      expect(screen.queryByTestId('payment-form')).not.toBeInTheDocument();
+      // The CyberSource "Credit Card" method button/logo is never rendered
+      expect(screen.queryByAltText('Credit Card')).not.toBeInTheDocument();
+      // No CyberSource submission event should have been tracked
+      expect(sendTrackEvent).not.toHaveBeenCalledWith(
+        'edx.bi.ecommerce.payment_mfe.payment_form_rendered',
+        expect.objectContaining({ paymentProcessor: 'Cybersource' }),
+      );
 
-      fireEvent.change(firstNameField, { target: { value: 'John' } });
-      fireEvent.change(lastNameField, { target: { value: 'Doe' } });
-      fireEvent.submit(screen.getByTestId('payment-form'));
-
-      store.getActions().pop();
-      expect(store.getActions().pop()).toMatchObject(submitPayment({ method: 'cybersource' }));
+      // PayPal is the only payment-method button offered
+      const methodButtons = wrapper.container.querySelectorAll('.payment-method-button');
+      expect(methodButtons).toHaveLength(1);
+      expect(methodButtons[0]).toBe(screen.getByTestId('PayPalButton'));
     });
   });
 
